@@ -67,7 +67,6 @@ add_project_arguments([
 		'--vapidir=' + join_paths(meson.source_root(), 'vapi'),
 		'--pkg', 'config',
 		'--pkg', 'cogl-fixes',
-		'--pkg', 'compat',
 	],
 	language: 'vala',
 )
