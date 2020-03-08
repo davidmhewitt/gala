@@ -48,9 +48,13 @@ namespace Gala {
             add_effect (effect);
         }
 
+#if HAS_MUTTER336
+        public override void paint (Clutter.PaintContext context) {
+            base.paint (context);
+#else
         public override void paint () {
             base.paint ();
-
+#endif
             Cogl.set_source_color4ub (0, 0, 0, 100);
             var path = new Cogl.Path ();
             path.rectangle (0, 0, width, height);
