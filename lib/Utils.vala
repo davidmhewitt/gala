@@ -289,27 +289,28 @@ namespace Gala {
          * @return The close button actor
          */
         public static Clutter.Actor create_close_button () {
-            var texture = new Clutter.Texture ();
+            var actor = new Clutter.Actor ();
             var pixbuf = get_close_button_pixbuf ();
 
-            texture.reactive = true;
+            actor.reactive = true;
 
             if (pixbuf != null) {
                 try {
-                    texture.set_from_rgb_data (pixbuf.get_pixels (), pixbuf.get_has_alpha (),
-                    pixbuf.get_width (), pixbuf.get_height (),
-                    pixbuf.get_rowstride (), (pixbuf.get_has_alpha () ? 4 : 3), 0);
+                    var image = new Clutter.Image ();
+                    Cogl.PixelFormat pixel_format = (pixbuf.get_has_alpha () ? Cogl.PixelFormat.ARGB_8888 : Cogl.PixelFormat.RGB_888);
+                    image.set_data (pixbuf.get_pixels (), pixel_format, pixbuf.width, pixbuf.height, pixbuf.rowstride);
+                    actor.set_content (image);
                 } catch (Error e) {}
             } else {
                 // we'll just make this red so there's at least something as an
                 // indicator that loading failed. Should never happen and this
                 // works as good as some weird fallback-image-failed-to-load pixbuf
                 var scale = Utils.get_ui_scaling_factor ();
-                texture.set_size (36 * scale, 36 * scale);
-                texture.background_color = { 255, 0, 0, 255 };
+                actor.set_size (36 * scale, 36 * scale);
+                actor.background_color = { 255, 0, 0, 255 };
             }
 
-            return texture;
+            return actor;
         }
         /**
          * Returns the pixbuf that is used for resize buttons throughout gala at a
@@ -343,27 +344,28 @@ namespace Gala {
          * @return The resize button actor
          */
         public static Clutter.Actor create_resize_button () {
-            var texture = new Clutter.Texture ();
+            var actor = new Clutter.Actor ();
             var pixbuf = get_resize_button_pixbuf ();
 
-            texture.reactive = true;
+            actor.reactive = true;
 
             if (pixbuf != null) {
                 try {
-                    texture.set_from_rgb_data (pixbuf.get_pixels (), pixbuf.get_has_alpha (),
-                        pixbuf.get_width (), pixbuf.get_height (),
-                        pixbuf.get_rowstride (), (pixbuf.get_has_alpha () ? 4 : 3), 0);
+                    var image = new Clutter.Image ();
+                    Cogl.PixelFormat pixel_format = (pixbuf.get_has_alpha () ? Cogl.PixelFormat.ARGB_8888 : Cogl.PixelFormat.RGB_888);
+                    image.set_data (pixbuf.get_pixels (), pixel_format, pixbuf.width, pixbuf.height, pixbuf.rowstride);
+                    actor.set_content (image);
                 } catch (Error e) {}
             } else {
                 // we'll just make this red so there's at least something as an
                 // indicator that loading failed. Should never happen and this
                 // works as good as some weird fallback-image-failed-to-load pixbuf
                 var scale = Utils.get_ui_scaling_factor ();
-                texture.set_size (36 * scale, 36 * scale);
-                texture.background_color = { 255, 0, 0, 255 };
+                actor.set_size (36 * scale, 36 * scale);
+                actor.background_color = { 255, 0, 0, 255 };
             }
 
-            return texture;
+            return actor;
         }
 
         static Gtk.CssProvider gala_css = null;
