@@ -1,5 +1,6 @@
 // Non mini-object
 ActorBox struct
+Capture skip
 Color struct
 Knot struct
 PathNode struct
@@ -74,6 +75,8 @@ LayoutManager
 Actor
 	.animate skip=false
 	.animate_with_timeline skip=false
+Backend
+	.get_cogl_context skip=false
 Box
 	.pack skip=false
 	.pack_after skip=false
@@ -141,7 +144,7 @@ color_get_static nullable
 
 Stage
 	.event name="emit_event"
-	.capture.captures array=true out=true array_length_idx=3
+	.capture skip
 
 // *Event should be compact classes derived from Clutter.Event
 Event.type skip=false

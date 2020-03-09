@@ -28,7 +28,11 @@ public class Gala.Plugins.PIP.PopupWindow : Clutter.Actor {
 
     public Gala.WindowManager wm { get; construct; }
     public Meta.WindowActor window_actor { get; construct; }
+#if HAS_MUTTER336
+    public Graphene.Rect? container_clip { get; construct; }
+#else
     public Clutter.Rect? container_clip { get; construct; }
+#endif
 
     private Clutter.Actor clone;
     private Clutter.Actor container;
@@ -69,7 +73,11 @@ public class Gala.Plugins.PIP.PopupWindow : Clutter.Actor {
         Gdk.Display.get_default ().get_device_manager ().get_client_pointer ().get_position (null, out x, out y);
     }
 
+#if HAS_MUTTER336
+    public PopupWindow (Gala.WindowManager wm, Meta.WindowActor window_actor, Graphene.Rect? container_clip) {
+#else
     public PopupWindow (Gala.WindowManager wm, Meta.WindowActor window_actor, Clutter.Rect? container_clip) {
+#endif
         Object (wm: wm, window_actor: window_actor, container_clip: container_clip);
     }
 

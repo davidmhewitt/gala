@@ -934,7 +934,7 @@ namespace Meta {
 		public uint version_micro;
 		public uint version_api;
 	}
-	[CCode (cheader_filename = "meta/main.h", copy_function = "g_boxed_copy", free_function = "g_boxed_free", type_id = "meta_rectangle_get_type ()")]
+	[CCode (cheader_filename = "meta/boxes.h", copy_function = "g_boxed_copy", free_function = "g_boxed_free", type_id = "meta_rectangle_get_type ()")]
 	public struct Rectangle {
 		public int x;
 		public int y;
@@ -952,7 +952,7 @@ namespace Meta {
 		public Meta.Rectangle union (Meta.Rectangle rect2);
 		public bool vert_overlap (Meta.Rectangle rect2);
 	}
-	[CCode (cheader_filename = "meta/main.h", has_type_id = false)]
+	[CCode (cheader_filename = "meta/meta-shadow-factory.h", has_type_id = false)]
 	public struct ShadowParams {
 		public int radius;
 		public int top_fade;

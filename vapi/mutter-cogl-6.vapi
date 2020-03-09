@@ -155,10 +155,44 @@ namespace Cogl {
 	[Version (since = "2.0")]
 	public class OnscreenResizeClosure {
 	}
-	[CCode (cheader_filename = "cogl/cogl.h", copy_function = "cogl_path_copy")]
-	[Compact]
-	public class Path {
-		public static void @new ();
+	[CCode (cheader_filename = "cogl-path/cogl-path.h", type_id = "cogl_path_get_gtype ()")]
+	public class Path : Cogl.Object {
+		[CCode (cname = "cogl2_path_new", has_construct_function = false)]
+		public Path ();
+		[CCode (cname = "cogl2_path_arc")]
+		public void arc (float center_x, float center_y, float radius_x, float radius_y, float angle_1, float angle_2);
+		[CCode (cname = "cogl2_path_close")]
+		public void close ();
+		[Version (since = "2.0")]
+		public Cogl.Path copy ();
+		[CCode (cname = "cogl2_path_curve_to")]
+		public void curve_to (float x_1, float y_1, float x_2, float y_2, float x_3, float y_3);
+		[CCode (cname = "cogl2_path_ellipse")]
+		public void ellipse (float center_x, float center_y, float radius_x, float radius_y);
+		[CCode (cname = "cogl2_path_get_fill_rule")]
+		public Cogl.PathFillRule get_fill_rule ();
+		[CCode (cname = "cogl2_path_line")]
+		public void line (float x_1, float y_1, float x_2, float y_2);
+		[CCode (cname = "cogl2_path_line_to")]
+		public void line_to (float x, float y);
+		[CCode (cname = "cogl2_path_move_to")]
+		public void move_to (float x, float y);
+		[CCode (cname = "cogl2_path_polygon")]
+		public void polygon (float coords, int num_points);
+		[CCode (cname = "cogl2_path_polyline")]
+		public void polyline (float coords, int num_points);
+		[CCode (cname = "cogl2_path_rectangle")]
+		public void rectangle (float x_1, float y_1, float x_2, float y_2);
+		[CCode (cname = "cogl2_path_rel_curve_to")]
+		public void rel_curve_to (float x_1, float y_1, float x_2, float y_2, float x_3, float y_3);
+		[CCode (cname = "cogl2_path_rel_line_to")]
+		public void rel_line_to (float x, float y);
+		[CCode (cname = "cogl2_path_rel_move_to")]
+		public void rel_move_to (float x, float y);
+		[CCode (cname = "cogl2_path_round_rectangle")]
+		public void round_rectangle (float x_1, float y_1, float x_2, float y_2, float radius, float arc_step);
+		[CCode (cname = "cogl2_path_set_fill_rule")]
+		public void set_fill_rule (Cogl.PathFillRule fill_rule);
 	}
 	[CCode (cheader_filename = "cogl/cogl.h", type_id = "cogl_pipeline_get_gtype ()")]
 	public class Pipeline : Cogl.Object {
@@ -261,6 +295,47 @@ namespace Cogl {
 		public PixelBuffer (uint size);
 		public PixelBuffer.for_size (uint width, uint height, Cogl.PixelFormat format, uint stride);
 	}
+	[CCode (cheader_filename = "cogl/cogl.h", type_id = "cogl_primitive_get_gtype ()")]
+	public class Primitive : Cogl.Object {
+		[CCode (has_construct_function = false)]
+		protected Primitive ();
+		[Version (since = "1.10")]
+		public Cogl.Primitive copy ();
+		[Version (since = "1.16")]
+		public void draw (Cogl.Framebuffer framebuffer, Cogl.Pipeline pipeline);
+		public int get_first_vertex ();
+		public Cogl.VerticesMode get_mode ();
+		[Version (since = "1.8")]
+		public int get_n_vertices ();
+		[CCode (has_construct_function = false)]
+		[Version (since = "1.6")]
+		public Primitive.p2 (Cogl.Context context, Cogl.VerticesMode mode, [CCode (array_length_cname = "n_vertices", array_length_pos = 2.5)] Cogl.VertexP2[] data);
+		[CCode (has_construct_function = false)]
+		[Version (since = "1.6")]
+		public Primitive.p2c4 (Cogl.Context context, Cogl.VerticesMode mode, [CCode (array_length_cname = "n_vertices", array_length_pos = 2.5)] Cogl.VertexP2C4[] data);
+		[CCode (has_construct_function = false)]
+		[Version (since = "1.6")]
+		public Primitive.p2t2 (Cogl.Context context, Cogl.VerticesMode mode, [CCode (array_length_cname = "n_vertices", array_length_pos = 2.5)] Cogl.VertexP2T2[] data);
+		[CCode (has_construct_function = false)]
+		[Version (since = "1.6")]
+		public Primitive.p2t2c4 (Cogl.Context context, Cogl.VerticesMode mode, [CCode (array_length_cname = "n_vertices", array_length_pos = 2.5)] Cogl.VertexP2T2C4[] data);
+		[CCode (has_construct_function = false)]
+		[Version (since = "1.6")]
+		public Primitive.p3 (Cogl.Context context, Cogl.VerticesMode mode, [CCode (array_length_cname = "n_vertices", array_length_pos = 2.5)] Cogl.VertexP3[] data);
+		[CCode (has_construct_function = false)]
+		[Version (since = "1.6")]
+		public Primitive.p3c4 (Cogl.Context context, Cogl.VerticesMode mode, [CCode (array_length_cname = "n_vertices", array_length_pos = 2.5)] Cogl.VertexP3C4[] data);
+		[CCode (has_construct_function = false)]
+		[Version (since = "1.6")]
+		public Primitive.p3t2 (Cogl.Context context, Cogl.VerticesMode mode, [CCode (array_length_cname = "n_vertices", array_length_pos = 2.5)] Cogl.VertexP3T2[] data);
+		[CCode (has_construct_function = false)]
+		[Version (since = "1.6")]
+		public Primitive.p3t2c4 (Cogl.Context context, Cogl.VerticesMode mode, [CCode (array_length_cname = "n_vertices", array_length_pos = 2.5)] Cogl.VertexP3T2C4[] data);
+		public void set_first_vertex (int first_vertex);
+		public void set_mode (Cogl.VerticesMode mode);
+		[Version (since = "1.8")]
+		public void set_n_vertices (int n_vertices);
+	}
 	[CCode (cheader_filename = "cogl/cogl.h", cname = "CoglHandle", ref_function = "cogl_program_ref", unref_function = "cogl_program_unref")]
 	[Compact]
 	public class Program : Cogl.Handle {
@@ -296,6 +371,9 @@ namespace Cogl {
 		[CCode (has_construct_function = false)]
 		[Version (since = "2.0")]
 		public Texture2D.from_bitmap (Cogl.Bitmap bitmap);
+		[CCode (has_construct_function = false)]
+		[Version (since = "2.0")]
+		public Texture2D.from_data (Cogl.Context ctx, int width, int height, Cogl.PixelFormat format, int rowstride, [CCode (array_length = false, type = "const uint8_t*")] uint8[] data) throws GLib.Error;
 	}
 	[CCode (cheader_filename = "cogl/cogl.h", lower_case_csuffix = "texture_2d_sliced", type_id = "cogl_texture_2d_sliced_get_gtype ()")]
 	public class Texture2DSliced : Cogl.Object, Cogl.Texture {
@@ -347,8 +425,11 @@ namespace Cogl {
 		[Version (since = "1.10")]
 		public void draw_textured_rectangles (Cogl.Pipeline pipeline, [CCode (array_length = false)] float[] coordinates, uint n_rectangles);
 		public static uint32 error_quark ();
+		[CCode (cheader_filename = "cogl-path/cogl-path.h")]
+		public void fill_path (Cogl.Pipeline pipeline, Cogl.Path path);
 		[Version (since = "1.10")]
 		public void finish ();
+		public void flush ();
 		[Version (since = "1.10")]
 		public void frustum (float left, float right, float bottom, float top, float z_near, float z_far);
 		[Version (since = "1.8")]
@@ -402,6 +483,9 @@ namespace Cogl {
 		public void pop_matrix ();
 		[Version (since = "1.10")]
 		public void push_matrix ();
+		[CCode (cheader_filename = "cogl-path/cogl-path.h")]
+		[Version (since = "1.0")]
+		public void push_path_clip (Cogl.Path path);
 		[Version (since = "1.10")]
 		public void push_rectangle_clip (float x_1, float y_1, float x_2, float y_2);
 		public void push_region_clip (Cairo.Region region);
@@ -435,6 +519,8 @@ namespace Cogl {
 		public void set_stereo_mode (Cogl.StereoMode stereo_mode);
 		[Version (since = "1.8")]
 		public void set_viewport (float x, float y, float width, float height);
+		[CCode (cheader_filename = "cogl-path/cogl-path.h")]
+		public void stroke_path (Cogl.Pipeline pipeline, Cogl.Path path);
 		[Version (since = "1.10")]
 		public void transform (Cogl.Matrix matrix);
 		[Version (since = "1.10")]
@@ -622,6 +708,82 @@ namespace Cogl {
 	public struct UserDataKey {
 		public int unused;
 	}
+	[CCode (cheader_filename = "cogl/cogl.h", has_type_id = false)]
+	[Version (since = "1.6")]
+	public struct VertexP2 {
+		public float x;
+		public float y;
+	}
+	[CCode (cheader_filename = "cogl/cogl.h", has_type_id = false)]
+	[Version (since = "1.6")]
+	public struct VertexP2C4 {
+		public float x;
+		public float y;
+		public uint8 r;
+		public uint8 g;
+		public uint8 b;
+		public uint8 a;
+	}
+	[CCode (cheader_filename = "cogl/cogl.h", has_type_id = false)]
+	[Version (since = "1.6")]
+	public struct VertexP2T2 {
+		public float x;
+		public float y;
+		public float s;
+		public float t;
+	}
+	[CCode (cheader_filename = "cogl/cogl.h", has_type_id = false)]
+	[Version (since = "1.6")]
+	public struct VertexP2T2C4 {
+		public float x;
+		public float y;
+		public float s;
+		public float t;
+		public uint8 r;
+		public uint8 g;
+		public uint8 b;
+		public uint8 a;
+	}
+	[CCode (cheader_filename = "cogl/cogl.h", has_type_id = false)]
+	[Version (since = "1.6")]
+	public struct VertexP3 {
+		public float x;
+		public float y;
+		public float z;
+	}
+	[CCode (cheader_filename = "cogl/cogl.h", has_type_id = false)]
+	[Version (since = "1.6")]
+	public struct VertexP3C4 {
+		public float x;
+		public float y;
+		public float z;
+		public uint8 r;
+		public uint8 g;
+		public uint8 b;
+		public uint8 a;
+	}
+	[CCode (cheader_filename = "cogl/cogl.h", has_type_id = false)]
+	[Version (since = "1.6")]
+	public struct VertexP3T2 {
+		public float x;
+		public float y;
+		public float z;
+		public float s;
+		public float t;
+	}
+	[CCode (cheader_filename = "cogl/cogl.h", has_type_id = false)]
+	[Version (since = "1.6")]
+	public struct VertexP3T2C4 {
+		public float x;
+		public float y;
+		public float z;
+		public float s;
+		public float t;
+		public uint8 r;
+		public uint8 g;
+		public uint8 b;
+		public uint8 a;
+	}
 	[CCode (cheader_filename = "cogl/cogl.h", cname = "_CoglColorSizeCheck", has_type_id = false)]
 	public struct _ColorSizeCheck {
 		[CCode (array_length = false)]
@@ -773,6 +935,12 @@ namespace Cogl {
 		REPEAT,
 		CLAMP_TO_EDGE,
 		AUTOMATIC
+	}
+	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_PATH_FILL_RULE_", has_type_id = false)]
+	[Version (since = "1.4")]
+	public enum PathFillRule {
+		NON_ZERO,
+		EVEN_ODD
 	}
 	[CCode (cheader_filename = "cogl/cogl.h", cprefix = "COGL_PIPELINE_ALPHA_FUNC_", has_type_id = false)]
 	public enum PipelineAlphaFunc {
@@ -1031,6 +1199,9 @@ namespace Cogl {
 	[Version (since = "2.0")]
 	public static bool is_pipeline (void* object);
 	[CCode (cheader_filename = "cogl/cogl.h")]
+	[Version (since = "1.6")]
+	public static bool is_primitive (void* object);
+	[CCode (cheader_filename = "cogl/cogl.h")]
 	public static bool is_texture_2d (void* object);
 	[CCode (cheader_filename = "cogl/cogl.h")]
 	[Version (since = "1.10")]
@@ -1065,4 +1236,10 @@ namespace Cogl {
 	[CCode (cheader_filename = "cogl/cogl.h")]
 	[Version (since = "1.10")]
 	public static uint32 x11_onscreen_get_window_xid (Cogl.Onscreen onscreen);
+}
+[CCode (gir_namespace = "CoglPath", gir_version = "6", lower_case_csuffix = "cogl2_path")]
+namespace CoglPath {
+	[CCode (cheader_filename = "cogl-path.h", cname = "cogl_is_path")]
+	[Version (since = "2.0")]
+	public static bool is_path (void* object);
 }
