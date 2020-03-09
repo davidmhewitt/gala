@@ -44,6 +44,12 @@ namespace Clutter {
     public static unowned Clutter.Color? get_static (Clutter.StaticColor color);
   }
 
+  [CCode (cheader_filename = "clutter/clutter.h", has_destroy_function = false, has_type_id = false)]
+  public struct Capture {
+    public Cairo.ImageSurface image;
+    public Cairo.RectangleInt rect;
+  }
+
   [CCode (cheader_filename = "clutter/clutter.h", type_id = "clutter_container_get_type ()")]
   public interface Container : GLib.Object {
     public void add (params Clutter.Actor[] actors);
@@ -68,10 +74,12 @@ namespace Clutter {
     public Clutter.TouchpadSwipeEvent touchpad_swipe { [CCode (cname = "(ClutterTouchpadSwipeEvent *)")] get; }
   }
 
-  [CCode (type_id = "clutter_stage_get_type ()", cheader_filename = "clutter/clutter.h")]
+  [CCode (cheader_filename = "clutter/clutter.h", type_id = "clutter_stage_get_type ()")]
   public class Stage : Clutter.Group {
     [CCode (cname = "clutter_redraw")]
     public void redraw ();
+    [CCode (cname = "clutter_stage_capture")]
+    public bool capture (bool paint, Cairo.RectangleInt rect, out Clutter.Capture[] captures);
   }
 
   [CCode (cheader_filename = "clutter/clutter.h")]

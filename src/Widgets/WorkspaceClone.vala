@@ -23,7 +23,6 @@ namespace Gala {
      * Utility class which adds a border and a shadow to a Background
      */
     class FramedBackground : BackgroundManager {
-
 #if HAS_MUTTER330
         public FramedBackground (Display display) {
             Object (display: display, monitor_index: display.get_primary_monitor (), control_position: false);
@@ -42,7 +41,6 @@ namespace Gala {
             var primary = screen.get_primary_monitor ();
             var monitor_geom = screen.get_monitor_geometry (primary);
 #endif
-
             var effect = new ShadowEffect (40, 5);
             effect.css_class = "workspace";
             add_effect (effect);
@@ -51,10 +49,23 @@ namespace Gala {
 #if HAS_MUTTER336
         public override void paint (Clutter.PaintContext context) {
             base.paint (context);
+
+            var pipeline = new Cogl.Pipeline (context.get_framebuffer ().get_context ());
+
+            pipeline.set_color4ub (0, 0, 0, 100);
+            var path = new Cogl.Path ();
+            path.rectangle (0, 0, width, height);
+            context.get_framebuffer ().stroke_path (pipeline, path);
+
+            path = new Cogl.Path ();
+            pipeline.set_color4ub (255, 255, 255, 25);
+            path.rectangle (0, 0, width, height);
+            context.get_framebuffer ().stroke_path (pipeline, path);
+        }
 #else
         public override void paint () {
             base.paint ();
-#endif
+
             Cogl.set_source_color4ub (0, 0, 0, 100);
             var path = new Cogl.Path ();
             path.rectangle (0, 0, width, height);
@@ -64,6 +75,7 @@ namespace Gala {
             path.rectangle (0.5f, 0.5f, width - 1, height - 1);
             path.stroke ();
         }
+#endif
     }
 
     /**

@@ -288,6 +288,7 @@ namespace Gala {
          *
          * @return The close button actor
          */
+#if HAS_MUTTER336
         public static Clutter.Actor create_close_button () {
             var actor = new Clutter.Actor ();
             var pixbuf = get_close_button_pixbuf ();
@@ -312,6 +313,31 @@ namespace Gala {
 
             return actor;
         }
+#else
+        public static Clutter.Actor create_close_button () {
+            var texture = new Clutter.Texture ();
+            var pixbuf = get_close_button_pixbuf ();
+
+            texture.reactive = true;
+
+            if (pixbuf != null) {
+                try {
+                    texture.set_from_rgb_data (pixbuf.get_pixels (), pixbuf.get_has_alpha (),
+                    pixbuf.get_width (), pixbuf.get_height (),
+                    pixbuf.get_rowstride (), (pixbuf.get_has_alpha () ? 4 : 3), 0);
+                } catch (Error e) {}
+            } else {
+                // we'll just make this red so there's at least something as an
+                // indicator that loading failed. Should never happen and this
+                // works as good as some weird fallback-image-failed-to-load pixbuf
+                var scale = Utils.get_ui_scaling_factor ();
+                texture.set_size (36 * scale, 36 * scale);
+                texture.background_color = { 255, 0, 0, 255 };
+            }
+
+            return texture;
+        }
+#endif
         /**
          * Returns the pixbuf that is used for resize buttons throughout gala at a
          * size of 36px
@@ -343,6 +369,7 @@ namespace Gala {
          *
          * @return The resize button actor
          */
+#if HAS_MUTTER336
         public static Clutter.Actor create_resize_button () {
             var actor = new Clutter.Actor ();
             var pixbuf = get_resize_button_pixbuf ();
@@ -367,7 +394,31 @@ namespace Gala {
 
             return actor;
         }
+#else
+        public static Clutter.Actor create_resize_button () {
+            var texture = new Clutter.Texture ();
+            var pixbuf = get_resize_button_pixbuf ();
 
+            texture.reactive = true;
+
+            if (pixbuf != null) {
+                try {
+                    texture.set_from_rgb_data (pixbuf.get_pixels (), pixbuf.get_has_alpha (),
+                        pixbuf.get_width (), pixbuf.get_height (),
+                        pixbuf.get_rowstride (), (pixbuf.get_has_alpha () ? 4 : 3), 0);
+                } catch (Error e) {}
+            } else {
+                // we'll just make this red so there's at least something as an
+                // indicator that loading failed. Should never happen and this
+                // works as good as some weird fallback-image-failed-to-load pixbuf
+                var scale = Utils.get_ui_scaling_factor ();
+                texture.set_size (36 * scale, 36 * scale);
+                texture.background_color = { 255, 0, 0, 255 };
+            }
+
+            return texture;
+        }
+#endif
         static Gtk.CssProvider gala_css = null;
         public static unowned Gtk.CssProvider? get_gala_css () {
             if (gala_css == null) {

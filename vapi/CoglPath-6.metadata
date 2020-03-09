@@ -1,0 +1,6 @@
+Path parent="Cogl" cheader_filename="cogl-path/cogl-path.h"
+PathFillRule parent="Cogl"
+framebuffer_fill_path parent="Cogl.Framebuffer" symbol_type="method" name="fill_path" instance_idx=0 cheader_filename="cogl-path/cogl-path.h"
+framebuffer_push_path_clip parent="Cogl.Framebuffer" symbol_type="method" name="push_path_clip" instance_idx=0 cheader_filename="cogl-path/cogl-path.h"
+framebuffer_stroke_path parent="Cogl.Framebuffer" symbol_type="method" name="stroke_path" instance_idx=0 cheader_filename="cogl-path/cogl-path.h"
+

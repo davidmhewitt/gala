@@ -42,12 +42,6 @@ namespace Cogl {
 		public bool is_vertex_buffer ();
 	}
 
-	[CCode (cheader_filename = "cogl/cogl.h", copy_function = "cogl_path_copy")]
-	[Compact]
-	public class Path {
-		public static void @new ();
-	}
-
 	[Compact]
 	public class PixelBuffer: Handle {
 		public PixelBuffer (uint size);

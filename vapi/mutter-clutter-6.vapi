@@ -5421,6 +5421,8 @@ namespace Clutter {
 		public virtual unowned Clutter.StageWindow create_stage (Clutter.Stage wrapper) throws GLib.Error;
 		[NoWrapper]
 		public virtual void ensure_context (Clutter.Stage stage);
+		[Version (since = "1.8")]
+		public unowned Cogl.Context get_cogl_context ();
 		public unowned Clutter.Seat get_default_seat ();
 		[NoWrapper]
 		public virtual Clutter.FeatureFlags get_features ();
@@ -5738,7 +5740,7 @@ namespace Clutter {
 		protected DeformEffect ();
 		[NoWrapper]
 		public virtual void deform_vertex (float width, float height, Cogl.TextureVertex vertex);
-		public Cogl.Handle get_back_material ();
+		public unowned Cogl.Handle get_back_material ();
 		public void get_n_tiles (out uint x_tiles, out uint y_tiles);
 		public void invalidate ();
 		public void set_back_material (Cogl.Handle? material);
@@ -6431,7 +6433,7 @@ namespace Clutter {
 		[Version (deprecated = true, deprecated_since = "1.14", since = "1.8")]
 		public bool get_target_size (out float width, out float height);
 		[Version (since = "1.10")]
-		public Cogl.Handle get_texture ();
+		public unowned Cogl.Handle get_texture ();
 		public virtual void paint_target (Clutter.PaintContext paint_context);
 	}
 	[CCode (cheader_filename = "clutter/clutter.h", type_id = "clutter_page_turn_effect_get_type ()")]
@@ -6797,8 +6799,8 @@ namespace Clutter {
 		[CCode (has_construct_function = false, type = "ClutterEffect*")]
 		[Version (since = "1.8")]
 		public ShaderEffect (Clutter.ShaderType shader_type);
-		public Cogl.Handle get_program ();
-		public Cogl.Handle get_shader ();
+		public unowned Cogl.Handle get_program ();
+		public unowned Cogl.Handle get_shader ();
 		[NoWrapper]
 		public virtual string get_static_shader_source ();
 		public bool set_shader_source (string source);
@@ -6845,7 +6847,8 @@ namespace Clutter {
 		[CCode (has_construct_function = false, type = "ClutterActor*")]
 		[Version (since = "0.8")]
 		public Stage ();
-		public bool capture (bool paint, Cairo.RectangleInt rect, [CCode (array_length_cname = "n_captures", array_length_pos = 3.1, type = "ClutterCapture**")] out unowned Clutter.Capture[] captures);
+		[CCode (cname = "clutter_stage_capture")]
+		public bool capture (bool paint, Cairo.RectangleInt rect, out Clutter.Capture[] captures);
 		public void capture_into (bool paint, Cairo.RectangleInt rect, uint8 data);
 		[CCode (cname = "clutter_stage_event")]
 		[Version (since = "0.4")]
@@ -7623,9 +7626,9 @@ namespace Clutter {
 		public bool prev (out unowned Clutter.Actor child);
 		public void remove ();
 	}
-	[CCode (cheader_filename = "clutter/clutter.h", has_type_id = false)]
+	[CCode (cheader_filename = "clutter/clutter.h", has_destroy_function = false, has_type_id = false)]
 	public struct Capture {
-		public weak Cairo.Surface image;
+		public Cairo.ImageSurface image;
 		public Cairo.RectangleInt rect;
 	}
 	[CCode (cheader_filename = "clutter/clutter.h", copy_function = "g_boxed_copy", free_function = "g_boxed_free", type_id = "CLUTTER_TYPE_COLOR")]
