@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * cheader_filename="cogl/cogl.h"
 
 Color struct
@@ -80,3 +81,40 @@ BlendStringError errordomain
 RendererError errordomain
 SystemError errordomain
 TextureError errordomain
+=======
+Cogl cheader_filename="cogl/cogl.h"
+
+Color struct
+  . new skip
+  . free skip
+
+create_program skip
+create_shader skip
+
+
+is_bitmap skip
+is_material skip
+is_offscreen skip
+is_program skip
+is_shader skip
+is_texture skip
+is_vertex_buffer skip
+
+Matrix struct
+  . get_array array=true array_length_idx=-1
+  . get_inverse.inverse out=true
+  . multiply skip
+  . init_from_array skip
+  . init_identity skip
+  . transform_point.* ref=true
+
+Primitive
+    .new_p* skip=false
+    .draw skip=false
+
+Texture2D
+    .new_from_data.data array=true
+    .new_from_data skip=false
+
+program_* skip
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d

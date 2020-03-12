@@ -1,9 +1,15 @@
 // Non mini-object
 ActorBox struct
+<<<<<<< HEAD
 Color struct
 Knot struct
 Margin struct
 PaintVolume struct
+=======
+Capture skip
+Color struct
+Knot struct
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 PathNode struct
 Perspective struct
 Units struct
@@ -38,13 +44,20 @@ value_get_color nullable
 // method/virtual-method/signal don't match
 Actor
 	.event#method name="emit_event"
+<<<<<<< HEAD
 	.get_paint_volume#virtual_method name="get_paint_volume_vfunc"
 	.get_paint_volume#virtual_method.volume out
+=======
+	.get_paint_volume#method skip
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 	.queue_redraw#signal skip
 	.queue_redraw#virtual_method skip
 Container
 	.add_actor skip=false
+<<<<<<< HEAD
 	.class_* skip
+=======
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 Text
 	.activate#method name="try_activate"
 	.insert_text#signal skip
@@ -78,6 +91,11 @@ LayoutManager
 Actor
 	.animate skip=false
 	.animate_with_timeline skip=false
+<<<<<<< HEAD
+=======
+Backend
+	.get_cogl_context skip=false
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 Box
 	.pack skip=false
 	.pack_after skip=false
@@ -115,8 +133,11 @@ ActorBox
 Units.from_* skip
 Color
 	.new skip
+<<<<<<< HEAD
 Margin
 	.new skip
+=======
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 
 // Class methods
 container_class_find_child_property skip
@@ -124,6 +145,7 @@ container_class_list_child_properties skip
 
 // Move symbols
 get_actor_by_gid parent="Clutter.Actor" name="get_by_gid"
+<<<<<<< HEAD
 color_from_* skip
 units_from_* skip
 
@@ -134,15 +156,40 @@ color_get_static nullable
 Event
 	.get_position.position out
 
+=======
+units_from_* skip
+
+// Classes marked as out but not double ptr
+Actor
+	.get_margin.margin out=false
+DragAction
+	.get_drag_area.drag_area out=false
+InputDevice
+	.get_coords.point out=false
+Timeline
+	.get_cubic_bezier_progress.c_* out=false
+ZoomAction
+	.get_focal_point.point out=false
+	.get_transformed_focal_point.point out=false
+
+// Struct return values
+color_get_static nullable
+
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 // Remove for clutter-2.0
 /////////////////////////
 
 Stage
+<<<<<<< HEAD
  	.event name="emit_event"
  	.capture.captures out array_length_idx=3 type="Clutter.Capture[]"
 
 Capture
   .image type="Cairo.ImageSurface"
+=======
+	.event name="emit_event"
+	.capture skip
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 
 // *Event should be compact classes derived from Clutter.Event
 Event.type skip=false
@@ -156,10 +203,13 @@ StageStateEvent struct=false base_type="Clutter.Event"
 TouchEvent struct=false base_type="Clutter.Event"
 TouchpadPinchEvent struct=false base_type="Clutter.Event"
 TouchpadSwipeEvent struct=false base_type="Clutter.Event"
+<<<<<<< HEAD
 PadButtonEvent struct=false base_type="Clutter.Event"
 PadRingEvent struct=false base_type="Clutter.Event"
 PadStripEvent struct=false base_type="Clutter.Event"
 ProximityEvent struct=false base_type="Clutter.Event"
+=======
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 
 // Keysyms used to be CLUTTER_X instead of CLUTTER_KEY_X
 *#constant skip
@@ -187,4 +237,7 @@ BinLayout.new.*_align default=Clutter.BinAlignment.START
 
 // Possibly keep
 KEY_* skip=false name="KEY_(.+)" type="uint" parent="Clutter.Key"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d

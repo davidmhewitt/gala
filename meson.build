@@ -97,7 +97,11 @@ cogl_fixes_dep = vala.find_library('cogl-fixes', dirs: vapi_dir)
 
 mutter_dep = []
 libmutter_dep = []
+<<<<<<< HEAD
 mutter_found = false
+=======
+gala_base_dep = []
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 
 vala_flags = []
 
@@ -108,13 +112,19 @@ mutter334_dep = dependency('libmutter-5', version: ['>= 3.34', '< 3.35.1'], requ
 mutter336_dep = dependency('libmutter-6', version: ['>= 3.35.1', '< 3.37'], required: false)
 
 if mutter328_dep.found()
+<<<<<<< HEAD
 	mutter_found = true
 	libmutter_dep = mutter328_dep
+=======
+    gala_base_dep = [compat_dep]
+	libmutter_dep = dependency('libmutter-2', version: '>= 3.27.92')
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 	mutter_dep = [
 		libmutter_dep,
 		dependency('mutter-cogl-2'), dependency('mutter-cogl-pango-2'),
 		dependency('mutter-cogl-path-2'), dependency('mutter-clutter-2')
 	]
+<<<<<<< HEAD
 	vala_flags += []
 	add_project_arguments([
 		'-DCLUTTER_ENABLE_COMPOSITOR_API',
@@ -122,15 +132,26 @@ if mutter328_dep.found()
 		'-DCOGL_ENABLE_EXPERIMENTAL_API',
 		'-DCOGL_ENABLE_EXPERIMENTAL_2_0_API'
 	], language: 'c')
+=======
+	vala_flags = []
+	add_project_arguments(['-DCLUTTER_ENABLE_COMPOSITOR_API', '-DCLUTTER_ENABLE_EXPERIMENTAL_API',
+		'-DCOGL_ENABLE_EXPERIMENTAL_API', '-DCOGL_ENABLE_EXPERIMENTAL_2_0_API'], language: 'c')
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 endif
 if mutter330_dep.found()
+<<<<<<< HEAD
 	mutter_found = true
 	libmutter_dep = mutter330_dep
+=======
+    gala_base_dep = [compat_dep]
+	libmutter_dep = dependency('libmutter-3', version: '>= 3.29.4')
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 	mutter_dep = [
 		libmutter_dep,
 		dependency('mutter-cogl-3'), dependency('mutter-cogl-pango-3'),
 		dependency('mutter-cogl-path-3'), dependency('mutter-clutter-3')
 	]
+<<<<<<< HEAD
 	vala_flags += ['--define', 'HAS_MUTTER330']
 	add_project_arguments([
 		'-DCLUTTER_ENABLE_COMPOSITOR_API',
@@ -138,15 +159,26 @@ if mutter330_dep.found()
 		'-DCOGL_ENABLE_EXPERIMENTAL_API',
 		'-DCOGL_ENABLE_EXPERIMENTAL_2_0_API'
 	], language: 'c')
+=======
+	vala_flags = ['--define', 'HAS_MUTTER330']
+	add_project_arguments(['-DCLUTTER_ENABLE_COMPOSITOR_API', '-DCLUTTER_ENABLE_EXPERIMENTAL_API',
+		'-DCOGL_ENABLE_EXPERIMENTAL_API', '-DCOGL_ENABLE_EXPERIMENTAL_2_0_API'], language: 'c')
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 endif
 if mutter332_dep.found()
+<<<<<<< HEAD
 	mutter_found = true
 	libmutter_dep = mutter332_dep
+=======
+    gala_base_dep = [compat_dep]
+	libmutter_dep = dependency('libmutter-4', version: '>= 3.31.2')
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 	mutter_dep = [
 		libmutter_dep,
 		dependency('mutter-cogl-4'), dependency('mutter-cogl-pango-4'),
 		dependency('mutter-cogl-path-4'), dependency('mutter-clutter-4')
 	]
+<<<<<<< HEAD
 	vala_flags += ['--define', 'HAS_MUTTER330', '--define', 'HAS_MUTTER332']
 	add_project_arguments([
 		'-DCLUTTER_ENABLE_COMPOSITOR_API',
@@ -154,15 +186,26 @@ if mutter332_dep.found()
 		'-DCOGL_ENABLE_EXPERIMENTAL_API',
 		'-DCOGL_ENABLE_EXPERIMENTAL_2_0_API'
 	], language: 'c')
+=======
+	vala_flags = ['--define', 'HAS_MUTTER330', '--define', 'HAS_MUTTER332']
+	add_project_arguments(['-DCLUTTER_ENABLE_COMPOSITOR_API', '-DCLUTTER_ENABLE_EXPERIMENTAL_API',
+		'-DCOGL_ENABLE_EXPERIMENTAL_API', '-DCOGL_ENABLE_EXPERIMENTAL_2_0_API'], language: 'c')
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 endif
 if mutter334_dep.found()
+<<<<<<< HEAD
 	mutter_found = true
 	libmutter_dep = mutter334_dep
+=======
+    gala_base_dep = [compat_dep]
+	libmutter_dep = dependency('libmutter-5', version: '>= 3.34')
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 	mutter_dep = [
 		libmutter_dep,
 		dependency('mutter-cogl-5'), dependency('mutter-cogl-pango-5'),
 		dependency('mutter-cogl-path-5'), dependency('mutter-clutter-5')
 	]
+<<<<<<< HEAD
 	vala_flags += ['--define', 'HAS_MUTTER330', '--define', 'HAS_MUTTER332', '--define', 'HAS_MUTTER334']
 	add_project_arguments([
 		'-DCLUTTER_ENABLE_COMPOSITOR_API',
@@ -170,15 +213,26 @@ if mutter334_dep.found()
 		'-DCOGL_ENABLE_EXPERIMENTAL_API',
 		'-DCOGL_ENABLE_EXPERIMENTAL_2_0_API'
 	], language: 'c')
+=======
+	vala_flags = ['--define', 'HAS_MUTTER330', '--define', 'HAS_MUTTER332', '--define', 'HAS_MUTTER334']
+	add_project_arguments(['-DCLUTTER_ENABLE_COMPOSITOR_API', '-DCLUTTER_ENABLE_EXPERIMENTAL_API',
+		'-DCOGL_ENABLE_EXPERIMENTAL_API', '-DCOGL_ENABLE_EXPERIMENTAL_2_0_API'], language: 'c')
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 endif
 if mutter336_dep.found()
+<<<<<<< HEAD
 	mutter_found = true
 	libmutter_dep = mutter336_dep
+=======
+    gala_base_dep = []
+	libmutter_dep = dependency('libmutter-6', version: '>= 3.35.1')
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 	mutter_dep = [
 		libmutter_dep,
 		dependency('mutter-cogl-6'), dependency('mutter-cogl-pango-6'),
 		dependency('mutter-cogl-path-6'), dependency('mutter-clutter-6')
 	]
+<<<<<<< HEAD
 	vala_flags += ['--define', 'HAS_MUTTER330', '--define', 'HAS_MUTTER332', '--define', 'HAS_MUTTER334', '--define', 'HAS_MUTTER336']
 	add_project_arguments([
 		'-DCLUTTER_ENABLE_COMPOSITOR_API',
@@ -186,6 +240,11 @@ if mutter336_dep.found()
 		'-DCOGL_ENABLE_EXPERIMENTAL_API',
 		'-DCOGL_ENABLE_EXPERIMENTAL_2_0_API'
 	], language: 'c')
+=======
+	vala_flags = ['--define', 'HAS_MUTTER330', '--define', 'HAS_MUTTER332', '--define', 'HAS_MUTTER334', '--define', 'HAS_MUTTER336']
+	add_project_arguments(['-DCLUTTER_ENABLE_COMPOSITOR_API', '-DCLUTTER_ENABLE_EXPERIMENTAL_API',
+		'-DCOGL_ENABLE_EXPERIMENTAL_API', '-DCOGL_ENABLE_EXPERIMENTAL_2_0_API'], language: 'c')
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 endif
 if mutter_found == false
 	error ('No supported mutter library found!')
@@ -196,6 +255,7 @@ mutter_typelib_dir = libmutter_dep.get_pkgconfig_variable('typelibdir')
 add_project_arguments(vala_flags, language: 'vala')
 add_project_link_arguments(['-Wl,-rpath,@0@'.format(mutter_typelib_dir)], language: 'c')
 
+<<<<<<< HEAD
 gala_base_dep = [
 	glib_dep,
 	gobject_dep,
@@ -212,6 +272,9 @@ gala_base_dep = [
 	config_dep,
 	cogl_fixes_dep
 ]
+=======
+gala_base_dep += [glib_dep, gobject_dep, gio_dep, gmodule_dep, gee_dep, gtk_dep, plank_dep, bamf_dep, mutter_dep, granite_dep, gnome_desktop_dep, m_dep, config_dep, cogl_fixes_dep]
+>>>>>>> 2bf8e62e22ab0d2bf7be6cbc5c130a7ec0d98f7d
 
 subdir('data')
 subdir('lib')
