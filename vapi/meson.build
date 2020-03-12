@@ -3,6 +3,7 @@ vapigen_args = [
 	'--metadatadir=@0@'.format(meson.current_source_dir()),
 	'--girdir=@0@'.format(mutter_typelib_dir),
 	'--vapidir=@0@'.format(meson.current_build_dir()),
+	'--vapidir=@0@'.format(meson.current_source_dir()),
 ]
 
 vapigen = find_program('vapigen')
@@ -271,6 +272,7 @@ if mutter336_dep.found()
 			'--pkg=gobject-2.0',
 			'--pkg=cairo',
 			'--pkg=graphene-gobject-1.0',
+			'--pkg=mutter-cogl-path-6',
 			vapigen_args,
 			files('Cogl-6-custom.vala')
 		],
